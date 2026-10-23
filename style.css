@@ -1,0 +1,350 @@
+﻿* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #edf3ff;
+  color: #183153;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+header, .intro, footer {
+  margin-bottom: 6px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+header h1 {
+  font-size: clamp(17px, 2.2vw, 25px);
+  margin: 0;
+}
+
+.intro h2 {
+  font-size: clamp(19px, 2.5vw, 30px);
+  margin: 5px 0;
+}
+
+.intro p, footer {
+  font-size: 11px;
+  margin: 4px 0;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #dce3ef;
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.stats > div {
+  padding: 7px 3px;
+  text-align: center;
+  background: #f5f8ff;
+  border: 1px solid #e3eaf7;
+  border-radius: 8px;
+}
+
+.stats strong {
+  font-size: 14px;
+}
+
+.board {
+  width: min(100%,  min(58vh, 58vw));
+  aspect-ratio: 1;
+  margin: 0 auto 6px;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(9, minmax(0, 1fr));
+  border: 2px solid #183153;
+  background: white;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(12px, 2.1vh, 23px);
+  font-weight: 600;
+  border: 1px solid #d6e0f1;
+  background: white;
+  color: #183153;
+}
+
+.cell:nth-child(3n) { border-right: 2px solid #526b8d; }
+.cell:nth-child(9n) { border-right: 0; }
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 2px solid #526b8d;
+}
+
+.cell.selected { background: #c9dcff; outline: 2px solid #4169e1; }
+.cell.same { background: #e5edff; }
+.cell.given { font-weight: 800; }
+.cell.error { color: #d62828; background: #ffe1e1; }
+
+.numbers, .actions {
+  display: grid;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.numbers { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.actions { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+button, select {
+  min-width: 0;
+  padding: 8px 4px;
+  border: 1px solid #dce3ef;
+  border-radius: 7px;
+  background: #f5f8ff;
+  color: #183153;
+  cursor: pointer;
+}
+
+.message, #message {
+  text-align: center;
+  font-size: 11px;
+  margin: 5px 0;
+}
+
+@media (max-height: 650px) {
+  .app { padding: 5px; }
+  header, .intro, footer { margin-bottom: 3px; }
+  .intro h2 { font-size: 17px; margin: 2px 0; }
+  .intro p, footer { display: none; }
+  .panel { padding: 6px; }
+  .controls, .stats { margin-bottom: 4px; }
+  .stats > div { padding: 3px 2px; }
+  .numbers, .actions { gap: 3px; margin-top: 4px; }
+  button, select { padding: 5px 2px; }
+  .board { width: min(100%, 68vh, 68vw); }
+}
+
+@media (max-width: 500px) {
+  .app { padding: 4px; }
+  .panel { padding: 5px; }
+  .board { width: min(100%, 68vw, 52vh); }
+  button, select { font-size: 11px; }
+}
+
+/* Hide the unnecessary branding and tagline */
+header,
+.intro,
+footer {
+  display: none !important;
+}
+
+/* Give the game board more room */
+.app {
+  padding: 5px;
+}
+
+.panel {
+  padding: 6px;
+}
+
+.controls,
+.stats {
+  margin-bottom: 4px;
+}
+
+.board {
+  width: min(100%, 70vh, 70vw);
+  margin: 0 auto 5px;
+}
+
+.numbers,
+.actions {
+  margin-top: 4px;
+  gap: 4px;
+}
+
+@media (max-height: 650px) {
+  .board {
+    width: min(100%, 75vh, 75vw);
+  }
+}
+
+/* Compact game controls and statistics */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin: 0 0 4px !important;
+}
+
+.controls label,
+.controls select,
+.controls button {
+  font-size: 11px !important;
+}
+
+.controls select,
+.controls button {
+  padding: 4px 6px !important;
+}
+
+.stats {
+  gap: 4px !important;
+  margin: 0 0 4px !important;
+}
+
+.stats > div {
+  padding: 3px 2px !important;
+  border-radius: 5px !important;
+}
+
+.stats div,
+.stats span {
+  font-size: 9px !important;
+}
+
+.stats strong {
+  font-size: 12px !important;
+}
+
+.numbers,
+.actions {
+  gap: 3px !important;
+  margin-top: 3px !important;
+}
+
+.numbers button {
+  padding: 4px 1px !important;
+  font-size: 12px !important;
+  min-height: 25px;
+}
+
+.actions button {
+  padding: 4px 2px !important;
+  font-size: 10px !important;
+  min-height: 24px;
+}
+
+#message,
+.message {
+  font-size: 9px !important;
+  margin: 2px 0 !important;
+}
+
+/* Keep the game within the visible window */
+html,
+body {
+  height: 100%;
+  overflow: hidden !important;
+}
+
+.app {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: 4px !important;
+}
+
+.panel {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 4px !important;
+}
+
+.board {
+  flex: 0 1 auto;
+  width: min(100%, 65vh, 65vw) !important;
+  max-height: 100%;
+  aspect-ratio: 1;
+  margin: 2px auto !important;
+}
+
+@media (max-height: 650px) {
+  .panel { justify-content: space-around; }
+  .board {
+    width: min(100%, 57vh, 57vw) !important;
+  }
+  .numbers button,
+  .actions button {
+    min-height: 21px;
+    padding: 2px !important;
+  }
+  .stats > div { padding: 2px !important; }
+}
+
+@media (max-width: 500px) {
+  .board {
+    width: min(100%, 78vw, 53vh) !important;
+  }
+}
+
+/* Square Sudoku cells with straight borders */
+.board {
+  border: 2px solid #172b4d !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  gap: 0 !important;
+}
+
+.cell {
+  border-radius: 0 !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: none !important;
+  outline-offset: -2px;
+}
+
+/* Dark borders after every 3 columns */
+.cell:nth-child(3n) {
+  border-right: 2px solid #172b4d !important;
+}
+
+/* Dark borders after every 3 rows */
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 2px solid #172b4d !important;
+}
+
+/* Keep the outer edges dark */
+.cell:nth-child(9n) {
+  border-right: 0 !important;
+}
+
+.cell:nth-child(n+73) {
+  border-bottom: 0 !important;
+}

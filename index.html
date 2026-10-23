@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="logo">S</div>
+    <div><h1>Sudoku Studio</h1><p>YOUR DAILY BRAIN TRAINING</p></div>
+    <span class="offline">● Offline</span>
+  </header>
+
+  <section class="intro">
+    <h2>Find your <span>focus.</span></h2>
+    <p>One grid. Nine numbers. Endless satisfaction.</p>
+  </section>
+
+  <section class="panel">
+    <div class="toolbar">
+      <label>Difficulty
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label>
+      <button class="primary" id="newGame">↻ New Game</button>
+    </div>
+
+    <div class="stats">
+      <div><small>TIME</small><strong id="timer">00:00</strong></div>
+      <div><small>MISTAKES</small><strong id="mistakes">0 / 3</strong></div>
+      <div><small>FILLED</small><strong id="progress">0 / 81</strong></div>
+    </div>
+
+    <div id="board" class="board" aria-label="Sudoku board"></div>
+    <p id="message" class="message" role="status">Select a cell and type a number.</p>
+
+    <div class="numbers">
+      <button data-n="1">1</button><button data-n="2">2</button>
+      <button data-n="3">3</button><button data-n="4">4</button>
+      <button data-n="5">5</button><button data-n="6">6</button>
+      <button data-n="7">7</button><button data-n="8">8</button>
+      <button data-n="9">9</button>
+    </div>
+
+    <div class="actions">
+      <button id="undo">↶ Undo</button>
+      <button id="erase">⌫ Erase</button>
+      <button id="hint">✦ Hint</button>
+      <button id="reset">⟳ Reset</button>
+    </div>
+  </section>
+  <footer>
+    <p><kbd>1–9</kbd> Enter number &nbsp; <kbd>← ↑ → ↓</kbd> Move</p>
+    <p><kbd>Delete</kbd> Clear &nbsp; <kbd>Ctrl + Z</kbd> Undo</p>
+  </footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
